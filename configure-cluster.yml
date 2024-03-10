@@ -124,7 +124,8 @@
         msg: "[Worker] {{ hostvars['join_cmd_holder']['cmd'] }}"
 
     - name: join
-      ADD YOUR SOLUTION HERE
+      command: "{{ hostvars['master']['join_cmd'].stdout }}"
+      become: yes
 
 
 - hosts: master
