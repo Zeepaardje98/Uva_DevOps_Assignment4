@@ -111,7 +111,11 @@
       register: join_cmd
 
     - name: Add join cmd to dummy host
-      ADD YOUR SOLUTION HERE
+      add_host:
+        name: join_cmd_holder
+        ansible_host: 127.0.0.1
+        ansible_connection: local
+        join_cmd: "{{ join_cmd.stdout_lines[0] }}"
 
 - hosts: worker
   tasks:
