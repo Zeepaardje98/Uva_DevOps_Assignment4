@@ -115,13 +115,13 @@
         name: join_cmd_holder
         ansible_host: 127.0.0.1
         ansible_connection: local
-        cmd: "{{ join_cmd.stdout_lines[0] }}"
+        join_cmd: "{{ join_cmd.stdout_lines[0] }}"
 
 - hosts: worker
   tasks:
     - name: print join cmd
       ansible.builtin.debug:
-        msg: "[Worker] {{ hostvars['join_cmd_holder']['cmd'] }}"
+        msg: "[Worker] {{ hostvars['join_cmd_holder']['join_cmd'] }}"
 
     - name: join
       ansible.builtin.shell: "{{ hostvars['join_cmd_holder']['join_cmd'] }}"
