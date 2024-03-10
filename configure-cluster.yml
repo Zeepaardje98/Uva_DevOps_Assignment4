@@ -115,7 +115,7 @@
         name: join_cmd_holder
         ansible_host: 127.0.0.1
         ansible_connection: local
-        join_cmd: "{{ join_cmd.stdout_lines[0] }}"
+        cmd: "{{ join_cmd.stdout_lines[0] }}"
 
 - hosts: worker
   tasks:
@@ -124,8 +124,7 @@
         msg: "[Worker] {{ hostvars['join_cmd_holder']['cmd'] }}"
 
     - name: join
-      command: "{{ hostvars['master']['join_cmd'].stdout }}"
-      become: yes
+      ansible.builtin.shell: "{{ hostvars['join_cmd_holder']['join_cmd'] }}"
 
 
 - hosts: master
